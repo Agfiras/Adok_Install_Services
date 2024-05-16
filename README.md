@@ -51,8 +51,9 @@
    <p>After installation, you can access the installed services through:</p>
 
   <ul>
-        <li>Start Menu: Access Adok services from the Start menu under the designated group.</li>
-    </ul>
+        <li>Start Menu: Access Adok services from the Start menu under the designated group.</li> 
+        <li > File Manger: Acces Installation files in the directory <code>`/Programs(x86)/Adok Install Services'</code> </li>
+  </ul>
     <h2>Notes</h2>
     <ul>
         <li>AppId: The unique identifier for this application is generated automatically during installation.</li>
