@@ -1,4 +1,5 @@
-
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 </head>
 <br>
 <div align="center">
@@ -7,7 +8,7 @@
 </div>
 <br>
 <body>
-    <h1>About the Project</h1>
+    <h2>About the Project</h2>
 
 <p>Welcome to Adok Install Services! This is a script designed to facilitate the installation process for various Adok services and associated drivers on Adok Hub Aura.</p>
 
@@ -64,5 +65,10 @@
   <p>This script is provided under the <a href="LICENSE.md">MIT License</a>.</p>
 
   <hr>
-</body>
+</body> 
 </html>
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: ./LICENSE
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/firas-ajengui
