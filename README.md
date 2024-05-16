@@ -1,7 +1,13 @@
 
 </head>
+<br>
+<div align="center">
+<img src="./Inno/Setup_ico.ico" alt="Logo" width="200" height="200">
+<h1>Adok Install Services</h1>
+</div>
+<br>
 <body>
-    <h1>Adok Install Services</h1>
+    <h1>About the Project</h1>
 
 <p>Welcome to Adok Install Services! This is a script designed to facilitate the installation process for various Adok services and associated drivers on Adok Hub Aura.</p>
 
@@ -16,13 +22,14 @@
         <li>ROICalibration: calibration tool for diffrent resolutions.</li>
         <li>Adok ShutDown Service: Automates shutdown processes.</li>
         <li>Adok Start Control Service: Manages system startup processes.</li>
-        <li>Install Cgos : Essential for touch functionality</li>
-        <li>Install </li>
+        <li>Install Cgos : Essential for touch functionality.</li>
+        <li>Install CgbcSer : For serial port communications.</li>
+        <li>Install Intel graphic Driver (optional)</li>
   </ul>
 
   <h2>Installation</h2>
 
-  <p>To install Adok services using this script:</p>
+  <p>To generate the installation for Adok services using this script:</p>
 
   <ol>
         <li>Ensure you have downloaded the necessary executable files and drivers.</li>
@@ -51,14 +58,6 @@
         <li>Uninstall: Adok services can be uninstalled using the standard Windows uninstallation process.</li>
         <li>Restart: A system restart may be required after installation for changes to take effect.</li>
     </ul>
-
-  <h2>Contributors</h2>
-
-  <ul>
-        <li>AppName: Adok Install Services</li>
-        <li>Publisher: Adok SAS</li>
-        <li>Version: 1.0.0</li>
-  </ul>
 
   <h2>License</h2>
 
