@@ -33,9 +33,29 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Files]
-Source: "exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "download_google_drive_files.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
+; Other files to be installed from your repository
 
+[Code]
+function DownloadFile(SourceUrl, DestFile: string): Boolean;
+begin
+  Result := Exec(ExpandConstant('{tmp}\download_google_drive_files.exe'), Format('"%s" "%s"', [SourceUrl, DestFile]), '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  DownloadResultCode: Integer;
+begin
+  if CurStep = ssInstall then
+  begin
+    // Download the files from Google Drive during the installation process
+    if not DownloadFile('https://drive.google.com/drive/folders/1oItd_UfGN3pSFXIYeBUvfSbv3US2e1OK?usp=drive_link', ExpandConstant('{app}\your-file-name.ext')) then
+    begin
+      MsgBox('Failed to download files from Google Drive!', mbError, MB_OK);
+      WizardForm.Close; // Abort installation if download fails
+    end;
+  end;
+end;
 [Icons]
 Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng\AdokActionCenter.exe"
 Name: "{commonstartup}\Adok Batt"; Filename: "{app}\AdokBatteryIconCng\AdokBatteryIconCng.exe"
