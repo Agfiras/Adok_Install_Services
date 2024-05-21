@@ -20,7 +20,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 ArchitecturesAllowed=x64
 Uninstallable=yes
-AlwaysRestart=yes
+RestartIfNeededByRun = yes
 SetupIconFile=Setup_ico.ico
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
