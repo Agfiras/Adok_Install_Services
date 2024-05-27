@@ -10,7 +10,6 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{17D6DFC3-FD08-4BA0-9901-B484F0AF2429}}
 AppName={#MyAppName}
-PrivilegesRequired=admin
 AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
@@ -20,9 +19,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 ArchitecturesAllowed=x64
 Uninstallable=yes
-RestartIfNeededByRun = yes
 SetupIconFile=Setup_ico.ico
-
 OutputBaseFilename=Adok Install Services
 Compression=lzma
 SolidCompression=yes
