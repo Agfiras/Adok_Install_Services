@@ -26,8 +26,8 @@ OutputBaseFilename=Adok Install Services
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-AlwaysRestart = yes    
-
+AlwaysRestart = yes
+UninstallFilesDir={app}\Uninstall
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
@@ -39,7 +39,6 @@ Source: "C:\Users\adok\Desktop\exe_Congatec\*"; DestDir: "{app}"; Flags: ignorev
 Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng\AdokActionCenter.exe"
 Name: "{commonstartup}\Adok Batt"; Filename: "{app}\AdokBatteryIconCng\AdokBatteryIconCng.exe"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"; 
 Name: "{group}\ROICalibration"; Filename: "{app}\ROICalibrationV3\ROICalibrationV3.exe"; WorkingDir: "{app}\ROICalibrationV3";
 [Code]
@@ -52,17 +51,18 @@ begin
     // Execute each step in sequence, checking for success before proceeding to the next step
     if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
             '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
-            '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+            '', SW_HIDE, ewNoWait, ResultCode) then
     begin
       if Exec(ExpandConstant('{app}\AdokStartControlCng\installutil.exe'), 
               '/LogToConsole=false "' + ExpandConstant('{app}\AdokStartControlCng\AdokStartControlCng.exe') + '"', 
-              '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+              '', SW_HIDE, ewNoWait, ResultCode) then
+      begin
+      if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
+                  ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
       begin
         if Exec(ExpandConstant('{app}\DriversW10\CgbcSer\setup.exe'), '', 
                 ExpandConstant('{app}\DriversW10\CgbcSer'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-        begin
-          if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
-                  ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+          
           begin
             Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
                  ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode);
@@ -70,10 +70,18 @@ begin
         end;
       end;
     end;
-  end
+  end;
+  end;
+
   [UninstallRun]
+
+RunOnceId: "Uninstall Adok Install Services"
+
 Filename: {sys}\sc.exe; Parameters: "stop AdokWindowsShutdownService" ; Flags: runhidden
 Filename: {sys}\sc.exe; Parameters: "delete AdokWindowsShutdownService" ; Flags: runhidden
 
 Filename: {sys}\sc.exe; Parameters: "stop AdokStartControlService" ; Flags: runhidden
 Filename: {sys}\sc.exe; Parameters: "delete AdokStartControlService" ; Flags: runhidden
+
+Filename: {sys}\taskkill.exe; Parameters: "/F /IM AdokActionCenter.exe"; Flags: runhidden
+Filename: {sys}\taskkill.exe; Parameters: "/F /IM AdokBatteryIconCng.exe"; Flags: runhidden
