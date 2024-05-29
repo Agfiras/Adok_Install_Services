@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: installer
-          path: Adok-Install-Services/Inno/Output*.exe
+          path: Adok-Install-Services/Inno/Output/*.exe
           
       - name: Create Release
         id: create_release
