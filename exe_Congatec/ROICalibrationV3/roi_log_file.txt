@@ -1,0 +1,9 @@
+
+[2023-04-17 14:09:25.590 (GMT)] *** ROI Calibration uart control program starts ***
+[2023-04-17 14:09:25.604 (GMT)] Serial port COM3 was opened successfully
+[2023-04-17 14:09:28.782 (GMT)] We sent: 0x43, 0x41, 0x4C, 0x2D, 0x45, 0x4E, 0x44
+[2023-04-17 14:09:29.291 (GMT)] We sent: 0x3, 0x20, 0x1B, 0x80
+[2023-04-17 14:09:29.296 (GMT)] We received: 0x4F, 0x4B
+[2023-04-17 14:09:54.924 (GMT)] We received: 0x3, 0x30, 0x28, 0x0
+[2023-04-17 14:09:54.937 (GMT)] AdokVision indicated that the calibration SUCCEEDED
+[2023-04-17 14:10:25.624 (GMT)] *** ROI Calibration uart control program EXITS ***

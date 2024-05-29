@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Adok Settings</title>
+	<link rel="stylesheet" type="text/css" href="styles/css/style.css">
+</head>
+
+<body>
+	<div id="layout">
+		<img class="background_image" src="../res/ADOK_Logo_symbol.png"/>
+		<button id="exit"></button>
+		<p class="adok-title"><span class="adok-title-strong">adok</span> Action Center</p>
+		<div id="content">
+			<div class="panel">
+				<h2>ORIENTATION</h2>
+				<div class="panel-grid-3">
+					<button id="left-rotation"></button>
+					<button id="right-rotation"></button>
+					<button id="inverse-screen"></button>
+				</div>
+			</div>
+
+		</div>
+		<div id="content">
+			<div class="panel">
+				<h2>RESIZING</h2>
+				<div class="panel-grid-3">
+					<button id="small-screen"></button>
+					<button id="medium-screen"></button>
+					<button id="big-screen"></button>
+					<button id="custom-resizing"></button>					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+ 
+
+
+<!--	<footer class="footer" >
+			<div class="text-footer">
+					<button id="get-started-button" class="btn-size-0">
+						Get started
+						<img src="../res/setup.png">
+					</button>
+			</div>
+	</footer> -->
+	
+
+	<!-- Electron renderer -->
+	<script> require('../renderer.js') </script>
+</body>
+
+</html>

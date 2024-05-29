@@ -1,0 +1,35 @@
+﻿Installing assembly 'C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe
+   logfile = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.InstallLog
+Installing service AdokStartControlService...
+Service AdokStartControlService has been successfully installed.
+Creating EventLog source AdokStartControlService in log Application...
+Committing assembly 'C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe
+   logfile = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.InstallLog
+Uninstalling assembly 'C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.exe
+   logfile = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControl\AdokStartControlCng.InstallLog
+Removing EventLog source AdokStartControlService.
+Service AdokStartControlService is being removed from the system...
+Service AdokStartControlService was successfully removed from the system.
+Attempt to stop service AdokStartControlService.
+Installing assembly 'C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.exe
+   logfile = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.InstallLog
+Installing service AdokStartControlService...
+Service AdokStartControlService has been successfully installed.
+Creating EventLog source AdokStartControlService in log Application...
+Committing assembly 'C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.exe
+   logfile = C:\Users\Adok\AppData\Roaming\Adok\AdokStartControlCng\AdokStartControlCng.InstallLog
