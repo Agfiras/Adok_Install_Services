@@ -1,6 +1,0 @@
-
-[2023-04-18 13:29:25.313 (GMT)] *** ROI Calibration uart control program starts ***
-[2023-04-18 13:29:25.343 (GMT)] Serial port COM3 was opened successfully
-[2023-04-18 13:29:25.867 (GMT)] We sent: 0x41, 0x43, 0x41, 0x31, 0x30, 0x30, 0x30, 0x2D, 0x45, 0x4E, 0x44
-[2023-04-18 13:29:25.882 (GMT)] Serial port was closed successfully
-[2023-04-18 13:29:25.882 (GMT)] *** ROI Calibration uart control program EXITS ***
