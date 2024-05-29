@@ -1,0 +1,4 @@
+exe_Congatec/* filter=lfs diff=lfs merge=lfs -text
+exe_Congatec/AdokActionCenterCng/AdokActionCenter.exe filter=lfs diff=lfs merge=lfs -text
+exe_Congatec/DriversW10/Intel_drivers_support/graphics_driverx64_4599.zip filter=lfs diff=lfs merge=lfs -text
+"exe_Congatec/* filter=lfs diff=lfs merge=lfs -text" 
