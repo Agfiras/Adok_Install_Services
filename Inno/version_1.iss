@@ -35,7 +35,7 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Files]
 ; Source and destination of files to be installed
 
-Source: "C:\Users\adok\Desktop\exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
 ; Create shortcuts in the start menu and startup folder
