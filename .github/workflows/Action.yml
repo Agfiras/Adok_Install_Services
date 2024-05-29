@@ -35,4 +35,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./Inno/Output  # Update this path based on where your .exe is located
           asset_name: Adok Install Services.exe
-          asset_content_type: application/octet-stream
+          asset_content_type: application/zip
