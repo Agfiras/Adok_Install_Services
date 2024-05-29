@@ -33,9 +33,13 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Files]
+; Source and destination of files to be installed
+
 Source: "C:\Users\adok\Desktop\exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
+; Create shortcuts in the start menu and startup folder
+
 Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng\AdokActionCenter.exe"
 Name: "{commonstartup}\Adok Batt"; Filename: "{app}\AdokBatteryIconCng\AdokBatteryIconCng.exe"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
@@ -74,8 +78,7 @@ begin
   end;
 
   [UninstallRun]
-
-RunOnceId: "Uninstall Adok Install Services"
+; Commands to run during uninstallation to stop and delete services and kill processes
 
 Filename: {sys}\sc.exe; Parameters: "stop AdokWindowsShutdownService" ; Flags: runhidden
 Filename: {sys}\sc.exe; Parameters: "delete AdokWindowsShutdownService" ; Flags: runhidden
