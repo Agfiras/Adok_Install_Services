@@ -1,5 +1,10 @@
 name: Build Installer
-on: push
+
+on: 
+  push:
+    tags:
+      - '*'
+
 jobs:
   build:
     name: Build the Inno Setup Installer
@@ -11,8 +16,8 @@ jobs:
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
           path: Inno/version_1.iss
-          options: /O+
- 
+          options: /O+.
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -31,5 +36,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./Inno/Output/Adok Install Services.exe  # Update this path based on where your .exe is located
-          asset_name: version_1.exe
+          asset_name: Adok Install Services.exe
           asset_content_type: application/octet-stream
