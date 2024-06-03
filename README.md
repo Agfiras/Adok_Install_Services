@@ -26,6 +26,8 @@
         <li>Install Cgos : Essential for touch functionality.</li>
         <li>Install CgbcSer : For serial port communications.</li>
         <li>Install Intel graphic Driver (optional)</li>
+        <li>Stop and Delete AdokShutdownServices And StartControlService , when uninstall is triggered</li>
+        <li>Stop Adok Battery & Adok Action Center when uninstall is triggered</li>
   </ul>
 
   <h2>Installation</h2>
@@ -52,7 +54,7 @@
 
   <ul>
         <li>Start Menu: Access Adok services from the Start menu under the designated group.</li> 
-        <li > File Manger: Acces Installation files in the directory <code>`/Programs(x86)/Adok Install Services'</code> </li>
+        <li > File Manger: Acces Installation files in the directory <code>`/Programs/Adok Install Services'</code> </li>
   </ul>
     <h2>Notes</h2>
     <ul>
