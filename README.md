@@ -35,7 +35,7 @@
   <p>To generate the installation for Adok services using this script:</p>
 
   <ol>
-        <li>Ensure you have downloaded the necessary executable files and drivers.</li>
+        <li>Ensure you have downloaded the necessary executable folder "exe_Congatec" and drivers.</li>
         <li>Run the provided script file with <a href="https://jrsoftware.org/isinfo.php">Inno Setup Compiler</a> installed on your system.</li>
         <li>Follow the on-screen instructions provided by the setup wizard.</li>
     </ol>
