@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Adok Install Services"
-#define MyAppPublisher "Adok SAS"
+#define MyAppPublisher "Adok SAS"  
 #define MyAppURL "https://www.getadok.com/"
 #define MyAppVersion "1.0.0"
   
