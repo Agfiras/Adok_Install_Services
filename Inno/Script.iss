@@ -34,8 +34,8 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Files]
 ; Source and destination of files to be installed
 
-Source: "C:\Users\adok\Documents\GitHub\Adok-Install-Services\Inno\exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
-Source: "C:\Users\adok\Documents\GitHub\Adok-Install-Services\Inno\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
 ; Create shortcuts in the start menu and startup folder
