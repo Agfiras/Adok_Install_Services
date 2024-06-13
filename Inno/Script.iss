@@ -35,7 +35,7 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 ; Source and destination of files to be installed
 
 Source: "C:\Users\adok\Documents\GitHub\Adok-Install-Services\Inno\exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
-Source: "C:\Users\adok\Documents\GitHub\Adok-Install-Services\Inno\Debug\*"; DestDir: "{temp}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "C:\Users\adok\Documents\GitHub\Adok-Install-Services\Inno\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
 ; Create shortcuts in the start menu and startup folder
@@ -53,7 +53,7 @@ begin
   if CurStep = ssPostInstall then
   begin
     // Execute each step in sequence, checking for success before proceeding to the next step
-    if Exec(ExpandConstant('{temp}\simbatt\INSTALL.bat'), '', '', SW_SHOW, ewNoWait, ResultCode) then
+    if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_SHOW, ewNoWait, ResultCode) then
     begin
       if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
               '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
