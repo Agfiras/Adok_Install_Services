@@ -9,19 +9,24 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Compile .ISS to .EXE Installer
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
           path: Inno/Script.iss
           options: /O+.
 
+      - name: Verify Installer
+        run: |
+          echo "Listing contents of Inno/Output directory:"
+          dir Inno/Output
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: installer
-          path: Inno/Output/Adok_Install_Services.exe
-          
+          path: Inno/Output/*.exe
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -39,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Inno/Output/Adok_Install_Services.exe  # Update this path based on where your .exe is located
+          asset_path: Inno/Output/Adok_Install_Services.exe  # Ensure this matches the exact file name and path
           asset_name: Adok_Install_Services.exe
           asset_content_type: application/octet-stream
