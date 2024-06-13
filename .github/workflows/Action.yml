@@ -18,14 +18,14 @@ jobs:
 
       - name: Verify Installer
         run: |
-          echo "Listing contents of Inno/Output directory:"
-          dir Inno/Output
+          echo "Listing contents of output directory:"
+          dir "D:\a\Adok-Install-Services\Adok-Install-Services\+\"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: installer
-          path: Inno/Output/*.exe
+          path: D:\a\Adok-Install-Services\Adok-Install-Services\+\*.exe
 
       - name: Create Release
         id: create_release
@@ -44,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Inno/Output/Adok_Install_Services.exe  # Ensure this matches the exact file name and path
+          asset_path: D:\a\Adok-Install-Services\Adok-Install-Services\+\Adok Install Services.exe
           asset_name: Adok_Install_Services.exe
           asset_content_type: application/octet-stream
