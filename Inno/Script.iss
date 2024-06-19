@@ -1,5 +1,6 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
+; Define constants for application properties
 #define MyAppName "Adok Install Services"
 #define MyAppPublisher "Adok SAS"
 #define MyAppURL "https://www.getadok.com/"
@@ -8,44 +9,44 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{17D6DFC3-FD08-4BA0-9901-B484F0AF2429}}
-AppName={#MyAppName}
-AppVerName={#MyAppName} {#MyAppVersion}
-AppPublisher={#MyAppPublisher}
-AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf64}\{#MyAppName}
-DefaultGroupName={#MyAppName}
-ArchitecturesAllowed=x64
-ArchitecturesInstallIn64BitMode=x64
-Uninstallable=yes
-SetupIconFile=Setup_ico.ico
-OutputBaseFilename=Adok Install Services
-Compression=lzma
-SolidCompression=yes
-WizardStyle=modern
-UninstallFilesDir={app}\Uninstall
+AppId={{17D6DFC3-FD08-4BA0-9901-B484F0AF2429}} ; Unique identifier for the application
+AppName={#MyAppName} ; Application name
+AppVerName={#MyAppName} {#MyAppVersion} ; Application name with version
+AppPublisher={#MyAppPublisher} ; Publisher name
+AppPublisherURL={#MyAppURL} ; Publisher URL
+AppSupportURL={#MyAppURL} ; Support URL
+AppUpdatesURL={#MyAppURL} ; Updates URL
+DefaultDirName={autopf64}\{#MyAppName} ; Default installation directory
+DefaultGroupName={#MyAppName} ; Default program group name
+ArchitecturesAllowed=x64 ; Allowed architectures
+ArchitecturesInstallIn64BitMode=x64 ; Install in 64-bit mode
+Uninstallable=yes ; Allow uninstallation
+SetupIconFile=Setup_ico.ico ; Setup icon file
+OutputBaseFilename=Adok Install Services ; Output base filename
+Compression=lzma ; Compression method
+SolidCompression=yes ; Use solid compression
+WizardStyle=modern ; Wizard style
+UninstallFilesDir={app}\Uninstall ; Directory for uninstall files
 
 [Languages]
+; Supported languages for the installer
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Files]
 ; Source and destination of files to be installed
-
 Source: "exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 Source: "Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
 ; Create shortcuts in the start menu and startup folder
-
 Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng\AdokActionCenter.exe"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"; 
-Name: "{group}\ROICalibration"; Filename: "{app}\ROICalibrationV3\ROICalibrationV3.exe"; WorkingDir: "{app}\ROICalibrationV3";
+Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"
+Name: "{group}\ROICalibration"; Filename: "{app}\ROICalibrationV3\ROICalibrationV3.exe"; WorkingDir: "{app}\ROICalibrationV3"
 
 [Code]
+; Procedure to execute post-installation steps
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   ResultCode: Integer;
@@ -96,4 +97,3 @@ Filename: {sys}\taskkill.exe; Parameters: "/F /IM AdokBatteryIconCng.exe"; Flags
 
 Filename: {sys}\sc.exe; Parameters: "stop BatteryConfigService"; Flags: runhidden
 Filename: {sys}\sc.exe; Parameters: "delete BatteryConfigService"; Flags: runhidden
-
