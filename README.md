@@ -2,7 +2,7 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 </head>
 <br>
-<div align="center">
+<div align="center">   
 <img src="./Inno/Setup_ico.ico" alt="Logo" width="200" height="200">
 <h1>Adok Install Services</h1>
 </div>
