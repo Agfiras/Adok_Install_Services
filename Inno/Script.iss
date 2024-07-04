@@ -4,7 +4,7 @@
 #define MyAppName "Adok Install Services"
 #define MyAppPublisher "Adok SAS"
 #define MyAppURL "https://www.getadok.com/"
-#define MyAppVersion "2.0.0"
+#define MyAppVersion "2.0.0"  
   
 
 [Setup]
