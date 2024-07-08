@@ -45,7 +45,7 @@ Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
 Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"
 Name: "{group}\ROICalibration"; Filename: "{app}\ROICalibrationV3\ROICalibrationV3.exe"; WorkingDir: "{app}\ROICalibrationV3"
-
+// we will add the art when install the Battery config as service 
 [Code]
 ; Procedure to execute post-installation steps
 procedure CurStepChanged(CurStep: TSetupStep);
