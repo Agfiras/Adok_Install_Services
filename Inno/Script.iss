@@ -34,15 +34,13 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Files]
 ; Source and destination of files to be installed
-
 Source: "exe_Congatec\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Icons]
 ; Create shortcuts in the start menu and startup folder
-
 Name: "{commonstartup}\Adok Action Centre"; Filename: "{app}\AdokActionCenterCng\AdokActionCenter.exe"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"; 
+Name: "{group}\Calib Usine"; Filename: "{app}\Calibration USINE Cng\CalibrationUsineCng.exe"; WorkingDir: "{app}\Calibration USINE Cng"
 
 [Code]
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -51,31 +49,48 @@ var
 begin
   if CurStep = ssPostInstall then
   begin
-if Exec('REG', 'IMPORT "' + ExpandConstant('{app}\reg\Turn_ON_show_touch_keyboard_when_no_keyboard_attached_in_desktop_mode.reg') + '"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
-    then
-  begin
-    if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_HIDE, ewNoWait, ResultCode) then
+    if Exec('REG', 'IMPORT "' + ExpandConstant('{app}\reg\Turn_ON_show_touch_keyboard_when_no_keyboard_attached_in_desktop_mode.reg') + '"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
     begin
-      if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
-              '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
-              '', SW_HIDE, ewNoWait, ResultCode) then
+      if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_HIDE, ewNoWait, ResultCode) then
       begin
-        if Exec(ExpandConstant('{app}\AdokStartControlCng\installutil.exe'), 
-                '/LogToConsole=false "' + ExpandConstant('{app}\AdokStartControlCng\AdokStartControlCng.exe') + '"', 
+        if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
+                '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
                 '', SW_HIDE, ewNoWait, ResultCode) then
         begin
-          if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
-                  ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+          if Exec(ExpandConstant('{app}\AdokStartControlCng\installutil.exe'), 
+                  '/LogToConsole=false "' + ExpandConstant('{app}\AdokStartControlCng\AdokStartControlCng.exe') + '"', 
+                  '', SW_HIDE, ewNoWait, ResultCode) then
           begin
-            if Exec(ExpandConstant('{app}\DriversW10\CgbcSer\setup.exe'), '', 
-                    ExpandConstant('{app}\DriversW10\CgbcSer'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+            if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
+                    ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
             begin
-              if Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
-                   ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+              if Exec(ExpandConstant('{app}\DriversW10\CgbcSer\setup.exe'), '', 
+                      ExpandConstant('{app}\DriversW10\CgbcSer'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
               begin
-                Exec(ExpandConstant('{sys}\sc.exe'), 'create BatteryConfigService binPath= "' + ExpandConstant('{app}\BatteryConfig\Batteryconfig.exe') + '" start= auto', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
-                
+                if Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
+                     ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+                begin
+                  Exec(ExpandConstant('{sys}\sc.exe'), 'create BatteryConfigService binPath= "' + ExpandConstant('{app}\BatteryConfig\Batteryconfig.exe') + '" start= auto', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+                  
+                  // Disable sleep mode
+                  if Exec('powercfg', '-change -standby-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                  begin
+                    Log('Successfully disabled sleep mode when on battery');
+                  end
+                  else
+                  begin
+                    Log('Failed to disable sleep mode when on battery');
                   end;
+
+                  if Exec('powercfg', '-change -standby-timeout-ac 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                  begin
+                    Log('Successfully disabled sleep mode when plugged in');
+                  end
+                  else
+                  begin
+                    Log('Failed to disable sleep mode when plugged in');
+                  end;
+                end;
               end;
             end;
           end;
