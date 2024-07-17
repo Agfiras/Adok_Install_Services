@@ -3,7 +3,7 @@
 #define MyAppName "Adok Install Services"
 #define MyAppPublisher "Adok SAS"
 #define MyAppURL "https://www.getadok.com/"
-#define MyAppVersion "2.0.0"
+#define MyAppVersion "3.0.0"
   
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -51,7 +51,9 @@ var
 begin
   if CurStep = ssPostInstall then
   begin
-    // Execute each step in sequence, checking for success before proceeding to the next step
+if Exec('REG', 'IMPORT "' + ExpandConstant('{app}\reg\Turn_ON_show_touch_keyboard_when_no_keyboard_attached_in_desktop_mode.reg') + '"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+    then
+  begin
     if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_HIDE, ewNoWait, ResultCode) then
     begin
       if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
@@ -71,10 +73,9 @@ begin
               if Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
                    ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
               begin
-                // Install Batteryconfig.exe as a service
                 Exec(ExpandConstant('{sys}\sc.exe'), 'create BatteryConfigService binPath= "' + ExpandConstant('{app}\BatteryConfig\Batteryconfig.exe') + '" start= auto', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
-                Exec('powershell.exe', '-ExecutionPolicy Bypass -File "' + ExpandConstant('{app}\EnableKeyboardIcon.ps1') + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
-
+                
+                  end;
               end;
             end;
           end;
