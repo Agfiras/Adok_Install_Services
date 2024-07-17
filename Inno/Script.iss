@@ -90,6 +90,26 @@ begin
                   begin
                     Log('Failed to disable sleep mode when plugged in');
                   end;
+
+                  // Set shutdown action for power button
+                  if Exec('powercfg', '-setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                  begin
+                    Log('Successfully set power button action to shutdown when on battery');
+                  end
+                  else
+                  begin
+                    Log('Failed to set power button action to shutdown when on battery');
+                  end;
+
+                  if Exec('powercfg', '-setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280  3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                  begin
+                    Log('Successfully set power button action to shutdown when plugged in');
+                  end
+                  else
+                  begin
+                    Log('Failed to set power button action to shutdown when plugged in');
+                  end;
+
                 end;
               end;
             end;
