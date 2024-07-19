@@ -18,7 +18,7 @@
 
   <ul>
         <li>Adok Action Centre: A centralized hub for managing Adok Hub resolution.</li>
-        <li>Adok Battery: Monitor battery.</li>
+        <li>AdokBatteryService: a service to monitor the simulated battery.</li>
         <li>Calib Usine: Calibration For the projector.</li>
         <li>Adok ShutDown Service: Automates shutdown processes.</li>
         <li>Adok Start Control Service: Manages system startup processes.</li>
