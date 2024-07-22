@@ -20,7 +20,7 @@ jobs:
       - name: Verify Installer
         run: |
           echo "Listing contents of output directory:"
-          dir "D:\a\-Adok-Install-Services\-Adok-Install-Services\+\"
+          dir "D:\a\Adok-Install-Services\Adok-Install-Services\+\"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
