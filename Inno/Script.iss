@@ -1,4 +1,4 @@
-; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
+;SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Adok Install Services"
 #define MyAppPublisher "Adok SAS"
@@ -49,67 +49,74 @@ var
 begin
   if CurStep = ssPostInstall then
   begin
-    if Exec('REG', 'IMPORT "' + ExpandConstant('{app}\reg\Turn_ON_show_touch_keyboard_when_no_keyboard_attached_in_desktop_mode.reg') + '"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+    if Exec('bcdedit', '/set testsigning on', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
     begin
-      if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_HIDE, ewNoWait, ResultCode) then
+      if Exec('REG', 'IMPORT "' + ExpandConstant('{app}\reg\Turn_ON_show_touch_keyboard_when_no_keyboard_attached_in_desktop_mode.reg') + '"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
       begin
-        if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
-                '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
-                '', SW_HIDE, ewNoWait, ResultCode) then
+        if Exec(ExpandConstant('{app}\simbatt\INSTALL.bat'), '', '', SW_HIDE, ewNoWait, ResultCode) then
         begin
-          if Exec(ExpandConstant('{app}\AdokStartControlCng\installutil.exe'), 
-                  '/LogToConsole=false "' + ExpandConstant('{app}\AdokStartControlCng\AdokStartControlCng.exe') + '"', 
+          if Exec(ExpandConstant('{app}\AdokWindowsShutdownCng\installutil.exe'), 
+                  '/LogToConsole=false "' + ExpandConstant('{app}\AdokWindowsShutdownCng\AdokWindowsShutdownCng.exe') + '"', 
                   '', SW_HIDE, ewNoWait, ResultCode) then
           begin
-            if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
-                    ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+            if Exec(ExpandConstant('{app}\AdokStartControlCng\installutil.exe'), 
+                    '/LogToConsole=false "' + ExpandConstant('{app}\AdokStartControlCng\AdokStartControlCng.exe') + '"', 
+                    '', SW_HIDE, ewNoWait, ResultCode) then
             begin
-              if Exec(ExpandConstant('{app}\DriversW10\CgbcSer\setup.exe'), '', 
-                      ExpandConstant('{app}\DriversW10\CgbcSer'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+              if Exec(ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10\InstallCGOS.bat'), '', 
+                      ExpandConstant('{app}\DriversW10\Cgos-x64-Windows10'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
               begin
-                if Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
-                     ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-                begin
-                  Exec(ExpandConstant('{sys}\sc.exe'), 'create BatteryConfigService binPath= "' + ExpandConstant('{app}\BatteryConfig\Batteryconfig.exe') + '" start= auto', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
-                  
-                  // Disable sleep mode
-                  if Exec('powercfg', '-change -standby-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                if Exec(ExpandConstant('{app}\DriversW10\CgbcSer\setup.exe'), '', 
+                        ExpandConstant('{app}\DriversW10\CgbcSer'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+                
                   begin
-                    Log('Successfully disabled sleep mode when on battery');
-                  end
-                  else
-                  begin
-                    Log('Failed to disable sleep mode when on battery');
-                  end;
+                    Exec(ExpandConstant('{sys}\sc.exe'), 'create BatteryConfigService binPath= "' + ExpandConstant('{app}\BatteryConfig\Batteryconfig.exe') + '" start= auto', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+                    
+                    // Disable sleep mode
+                    if Exec('powercfg', '-change -standby-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    begin
+                      Log('Successfully disabled sleep mode when on battery');
+                    end
+                    else
+                    begin
+                      Log('Failed to disable sleep mode when on battery');
+                    end;
 
-                  if Exec('powercfg', '-change -standby-timeout-ac 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-                  begin
-                    Log('Successfully disabled sleep mode when plugged in');
-                  end
-                  else
-                  begin
-                    Log('Failed to disable sleep mode when plugged in');
-                  end;
+                    if Exec('powercfg', '-change -standby-timeout-ac 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    begin
+                      Log('Successfully disabled sleep mode when plugged in');
+                    end
+                    else
+                    begin
+                      Log('Failed to disable sleep mode when plugged in');
+                    end;
 
-                  // Set shutdown action for power button
-                  if Exec('powercfg', '-setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-                  begin
-                    Log('Successfully set power button action to shutdown when on battery');
-                  end
-                  else
-                  begin
-                    Log('Failed to set power button action to shutdown when on battery');
-                  end;
+                    // Set shutdown action for power button
+                    if Exec('powercfg', '-setdcvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    begin
+                      Log('Successfully set power button action to shutdown when on battery');
+                    end
+                    else
+                    begin
+                      Log('Failed to set power button action to shutdown when on battery');
+                    end;
+                    // Set display timeout to never when plugged in
+                    if Exec('powercfg', '-change -monitor-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    begin
+                      Log('Successfully set display timeout to never when plugged in');
+                    end
+                    else
+                    begin
+                      Log('Failed to set display timeout to never when plugged in');
+                    end;
 
-                  if Exec('powercfg', '-setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280  3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-                  begin
-                    Log('Successfully set power button action to shutdown when plugged in');
-                  end
-                  else
-                  begin
-                    Log('Failed to set power button action to shutdown when plugged in');
-                  end;
+                    if Exec('powercfg', '-setacvalueindex SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280  3', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    begin
+                    if Exec(ExpandConstant('{app}\DriversW10\Intel_drivers_support\SetupChipset.exe'), '', 
+                       ExpandConstant('{app}\DriversW10\Intel_drivers_support'), SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+                    end;
 
+                  end;
                 end;
               end;
             end;
@@ -118,7 +125,7 @@ begin
       end;
     end;
   end;
-end;
+
 
 [UninstallRun]
 ; Commands to run during uninstallation to stop and delete services and kill processes
