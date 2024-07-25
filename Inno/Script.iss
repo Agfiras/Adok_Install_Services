@@ -1,9 +1,9 @@
-;SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
+; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Adok Install Services"
 #define MyAppPublisher "Adok SAS"
 #define MyAppURL "https://www.getadok.com/"
-#define MyAppVersion "3.0.0"
+#define MyAppVersion "3.1.0"
   
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -82,7 +82,7 @@ begin
                       Log('Failed to disable sleep mode when on battery');
                     end;
 
-                    if Exec('powercfg', '-change -standby-timeout-ac 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    if Exec('powercfg', '-change -standby-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
                     begin
                       Log('Successfully disabled sleep mode when plugged in');
                     end
@@ -101,7 +101,7 @@ begin
                       Log('Failed to set power button action to shutdown when on battery');
                     end;
                     // Set display timeout to never when plugged in
-                    if Exec('powercfg', '-change -monitor-timeout-dc 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+                    if Exec('powercfg', '-change -monitor-timeout-ac 0', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
                     begin
                       Log('Successfully set display timeout to never when plugged in');
                     end
