@@ -28,7 +28,7 @@
         <li>Activate the option for virtual Keyboard </li>
         <li>Turn off sleep mode when the HUb on battery and pluged in </li>
         <li>Change the shudown button function to shutdown only </li>
-        <li>Stop and Delete AdokShutdownServices And StartControlService , when uninstall is triggered</li>
+        <li>Stop and Delete AdokShutdownServices And AdokStartControlService , when uninstall is triggered</li>
         <li>Stop Adok Battery & Adok Action Center when uninstall is triggered</li>
   </ul>
 
